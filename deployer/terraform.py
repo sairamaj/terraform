@@ -14,8 +14,15 @@ class Terraform():
         stdout, stderr
 
     def apply(self):
+        print(f'path: {self.path}')
         process = subprocess.Popen(
-            ['lib\\terraform.exe', 'apply', '--auto-approve', self.path])
+            [
+                'lib\\terraform.exe',
+                'apply',
+                '--auto-approve',
+                '-var-file=input.tfvars',
+                self.path, 
+            ])
         stdout, stderr = process.communicate()
         stdout, stderr
 
@@ -24,5 +31,5 @@ class Terraform():
             os.remove('terraform.tfstate')
         if path.exists('terraform.tfstate.backup'):
             os.remove('terraform.tfstate.backup')
-        if path.exists('.terraform'):
-            shutil.rmtree('.terraform')
+        # if path.exists('.terraform'):
+        #     shutil.rmtree('.terraform')

@@ -1,6 +1,16 @@
 import terraform
 import sys
 
+# x =  [
+#                 'lib\\terraform.exe',
+#                 'apply',
+#                 '--auto-approve',
+#                 '-var-file=\"input.tfvars\"',
+#                 "samples\\usingvariables",
+#             ]
+
+# print(" ".join(x))
+# quit()
 
 print(sys.argv)
 if len(sys.argv) < 2:

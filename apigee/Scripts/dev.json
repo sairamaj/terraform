@@ -1,0 +1,16 @@
+{
+ "email" : "devtest@apigee.com",
+ "firstName" : "DevUser1",
+ "lastName" : "DevUserLast",
+ "userName" : "devUser1",
+ "attributes" : [
+  {
+   "name" : "age",
+   "value" : "20"
+  },
+  {
+   "name" : "gender",
+   "value" : "male"
+  }
+ ]
+}

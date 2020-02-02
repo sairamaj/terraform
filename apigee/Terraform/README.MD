@@ -44,3 +44,14 @@ set APIGEE_ACCESS_TOKEN=access token here
 main.py samples\apigee
 ```
 
+### ApiGee references
+[Proxy configuration](https://docs.apigee.com/api-platform/reference/api-proxy-configuration-reference)
+Bundle structure
+  - BaseConfiguration
+  - Proxies(app=> apigee)
+  - Targes (apigee =>backend)
+
+  ### Issues
+  * Error: [ERROR] resourceApiProxyCreate error importing api_proxy: json: cannot unmarshal object into Go struct field ErrorResponse.message of type string
+    * Check the variables (one of mistake was having quotes during the environment variables)
+    * Also check the access token

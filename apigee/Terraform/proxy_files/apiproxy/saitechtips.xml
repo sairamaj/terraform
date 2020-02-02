@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="saitechtips">
+    <Basepaths>/saitechtips</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1580528669545</CreatedAt>
+    <CreatedBy>sairamaj@hotmail.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>saitechtips</DisplayName>
+    <LastModifiedAt>1580528669545</LastModifiedAt>
+    <LastModifiedBy>sairamaj@hotmail.com</LastModifiedBy>
+    <ManifestVersion>SHA-512:d2405ef04204cf0bbd27e93cc30c4d149be1bd3d1b761a844a801f04e9ad3a06ca3441e41319e66586b5271aa757bac654ccabf1a89ae944ec86cdb5f3091aeb</ManifestVersion>
+    <Policies>
+        <Policy>add-cors</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

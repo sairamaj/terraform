@@ -1,4 +1,4 @@
-# variable "org" { default = "sairamaj-eval" }
+variable "org" { default = "sairamaj-eval" }
 variable "env" { default = "test" }
 
 provider "apigee" {
@@ -10,10 +10,30 @@ data "archive_file" "bundle" {
    source_dir   = "${path.module}/proxy_files"
    output_path  = "${path.module}/proxy_files_bundle/apiproxy.zip"
 }
-resource "apigee_api_proxy" "helloworld_proxy" {
-   name  = "helloworld2"                         # The proxy name.
+
+# resource "null_resource" "hellworld" {
+
+#   provisioner "local-exec" {
+#     command     = "\"Bundle file:  ${data.archive_file.bundle.output_path}\" | Out-File c:\\temp\\test.txt"
+#     interpreter = ["PowerShell", "-Command"]
+#   }
+# }
+
+resource "apigee_api_proxy" "saitechtips_proxy" {
+   name  = "saitechtips"                         # The proxy name.
    bundle       = "${data.archive_file.bundle.output_path}" # Apigee APIs require a zip bundle to import a proxy.
    bundle_sha   = "${data.archive_file.bundle.output_sha}"  # The SHA is used to detect changes for plan/apply.   
+}
+
+# A proxy deployment
+resource "apigee_api_proxy_deployment" "saitechtips_proxy_deployment" {
+   proxy_name   = "${apigee_api_proxy.saitechtips_proxy.name}"
+   org          = "${var.org}"
+   env          = "${var.env}"
+
+   # NOTE: revision = "latest" 
+   # will deploy the latest revision of the api proxy 
+   revision     = "${apigee_api_proxy.saitechtips_proxy.revision}"
 }
 
 # resource "apigee_developer" "helloworld_developer" {

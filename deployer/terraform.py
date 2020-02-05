@@ -27,9 +27,10 @@ class Terraform():
         stdout, stderr
 
     def clean(self):
-        if path.exists('terraform.tfstate'):
-            os.remove('terraform.tfstate')
-        if path.exists('terraform.tfstate.backup'):
-            os.remove('terraform.tfstate.backup')
+        pass
+        # if path.exists('terraform.tfstate'):
+        #     os.remove('terraform.tfstate')
+        # if path.exists('terraform.tfstate.backup'):
+        #     os.remove('terraform.tfstate.backup')
         # if path.exists('.terraform'):
         #     shutil.rmtree('.terraform')

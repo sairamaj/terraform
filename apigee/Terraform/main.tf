@@ -1,3 +1,6 @@
+# APIGEE_ACCESS_TOKEN="my-access-token"
+# APIGEE_ORG=sairamaj-eval
+
 variable "org" { default = "sairamaj-eval" }
 variable "env" { default = "test" }
 
@@ -10,14 +13,6 @@ data "archive_file" "bundle" {
    source_dir   = "${path.module}/proxy_files"
    output_path  = "${path.module}/proxy_files_bundle/apiproxy.zip"
 }
-
-# resource "null_resource" "hellworld" {
-
-#   provisioner "local-exec" {
-#     command     = "\"Bundle file:  ${data.archive_file.bundle.output_path}\" | Out-File c:\\temp\\test.txt"
-#     interpreter = ["PowerShell", "-Command"]
-#   }
-# }
 
 resource "apigee_api_proxy" "saitechtips_proxy" {
    name  = "saitechtips"                         # The proxy name.
@@ -33,21 +28,35 @@ resource "apigee_api_proxy_deployment" "saitechtips_proxy_deployment" {
 
    # NOTE: revision = "latest" 
    # will deploy the latest revision of the api proxy 
-   revision     = "${apigee_api_proxy.saitechtips_proxy.revision}"
+   #revision     = "${apigee_api_proxy.saitechtips_proxy.revision}"
+   revision = "latest"
 }
 
-# resource "apigee_developer" "helloworld_developer" {
-#    email = "helloworld2_email@test.com"                                  # required
-#    first_name = "helloworld2"                                            # required
-#    last_name = "thelloworld2"                                           # required
-#    user_name = "helloworld2"                                            # required
+resource "apigee_product" "saitechtips_product" {
+   name = "saitechtips-product"
+   approval_type = "auto"
+   api_resources = ["/"]
+   proxies = ["${apigee_api_proxy.saitechtips_proxy.name}"]
+}
 
-#    attributes = {                                                         # optional
-#       DisplayName = "my_awesome_app_updated"
-#       Notes = "notes_for_developer_app_updated"
-# 	  custom_attribute_name = "custom_attribute_value"
-#    }
-# }
+resource "apigee_developer" "saitechtips_developer" {
+   email = "saitechtips@test.com"                                  # required
+   first_name = "SaiTech"                                            # required
+   last_name = "Sample"                                           # required
+   user_name = "saitechtips"                                            # required
+
+   attributes = {                                                         # optional
+      DisplayName = "SaiTechApp"
+      Notes = "App used for accessing sai tech api"
+	  custom_attribute_name = "some custom attribute here."
+   }
+}
+
+resource "apigee_developer_app" "saitechtips_developer_app" {
+   name = "saitechtips_developer_app"                                    # required
+   developer_email = "${apigee_developer.saitechtips_developer.email}"   # developer email must exist
+   api_products = ["${apigee_product.saitechtips_product.name}"]         # list must exist 
+}
 
 # A company
 # resource "apigee_company" "helloworld_company" {

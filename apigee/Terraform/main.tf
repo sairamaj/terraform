@@ -46,7 +46,7 @@ resource "apigee_developer" "saitechtips_developer" {
    user_name = "saitechtips"                                            # required
 
    attributes = {                                                         # optional
-      DisplayName = "SaiTechApp"
+      DisplayName = "SaiTechApp"C:\dev\sairamaj\service-simulator
       Notes = "App used for accessing sai tech api"
 	  custom_attribute_name = "some custom attribute here."
    }
